@@ -115,9 +115,13 @@ func (s *StreamServer) ListenAndServe() error {
 
 // ListenAndServeTLS listens on defined Server ListenAddr and blocks until
 // underlying listener returns by Close() or an error occurs.
+// It initializes a TLS conn using specified tlsconfig, which can be nil.
 func (s *StreamServer) ListenAndServeTLS(tlsconfig *tls.Config) error {
 	if !s.isReady() {
 		return ErrAlreadyRunning
+	}
+	if tlsconfig == nil {
+		tlsconfig = &tls.Config{}
 	}
 	atomic.StoreInt32(&s.state, StateRunning)
 	l, err := tls.Listen(s.network, s.addr, tlsconfig)
