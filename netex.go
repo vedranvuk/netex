@@ -14,6 +14,7 @@ import (
 var (
 	// ErrNetEx is the base error of netex package.
 	ErrNetex = errorex.New("netex")
+
 	// ErrAlreadyRunning is returned on a listen/serve request when server is
 	// already running.
 	ErrAlreadyRunning = ErrNetex.Wrap("server already running")

@@ -31,7 +31,7 @@ const (
 	StateInvalid int32 = iota
 	// StateIdle is idle server state.
 	StateIdle
-	// StateRunning is the idle server state.
+	// StateRunning is the running server state.
 	StateRunning
 	// StateShuttingDown is the shutting-down server state.
 	StateShuttingDown
