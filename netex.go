@@ -12,20 +12,13 @@ import (
 )
 
 var (
-	// ErrNetEx is the base error of netex package.
+	// ErrNetex is the base error of netex package.
 	ErrNetex = errorex.New("netex")
-
-	// ErrAlreadyRunning is returned on a listen/serve request when server is
-	// already running.
-	ErrAlreadyRunning = ErrNetex.Wrap("server already running")
-	// ErrNotRunning is returned when a close is issued on a server that is
-	// not running.
-	ErrNotRunning = ErrNetex.Wrap("server not running")
 )
 
-// TlsConfigWithCertificate returns a new tls.Config with a certificate loaded
-// from specified key and cert files or returns an error.
-func TlsConfigWithCertificate(cert, key string) (*tls.Config, error) {
+// TLSConfigFromCertificateFile returns a new tls.Config with a single
+// certificate loaded from specified key and cert files or returns an error.
+func TLSConfigFromCertificateFile(cert, key string) (*tls.Config, error) {
 	certificate, err := tls.LoadX509KeyPair(cert, key)
 	if err != nil {
 		return nil, err
